@@ -18,6 +18,7 @@ public class UsuarioService {
 	private UsuarioRepository repo;
 	
 	public Page<Usuario> findPage(
+									String  nome,
 									Integer page,
 									Integer linesPerPage,
 									String  orderBy,
@@ -26,7 +27,7 @@ public class UsuarioService {
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		
-	return	repo.findAll(pageRequest);
+	return repo.findDistinctByNomeContainingIgnoreCase(nome,pageRequest );	
 		
 	}
 
