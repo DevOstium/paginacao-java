@@ -21,10 +21,12 @@ public class UserADService implements UserADRepository {
 		LdapTemplate ldapTemplate = new LdapTemplate();
 		LdapContextSource contextSource = new LdapContextSource();
 
-		contextSource.setUrl("ldap://i2br02:389/");
-		contextSource.setBase("OU=CSC,DC=i2br,DC=local");
-		contextSource.setUserDn("sis_ldap");
-		contextSource.setPassword("@cssAdmnstrdrLdp10");
+		contextSource.setUrl("ldap://meu-dominio:389/");
+		contextSource.setBase("OU=VENDAS,DC=FINANCEIRO,DC=local");
+		contextSource.setUserDn("usuario");
+		contextSource.setPassword("senha");
+		
+		
 
 		contextSource.afterPropertiesSet();
 		ldapTemplate.setContextSource(contextSource);

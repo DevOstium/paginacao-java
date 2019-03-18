@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.fagnerlira.pagincao.domain.Modulo;
 import com.fagnerlira.pagincao.domain.Usuario;
+import com.fagnerlira.pagincao.repositories.ModuloRepository;
 import com.fagnerlira.pagincao.repositories.UsuarioRepository;
 
 @Configuration
@@ -14,9 +16,21 @@ public class PopulaBanco {
 
 	@Autowired
 	private UsuarioRepository repo;
+	
+	@Autowired
+	private ModuloRepository modulo;
 
 	@Bean
 	public void usuaioDB() {
+		
+		
+		modulo.saveAll( Arrays.asList(
+										new Modulo("Prefeitura"),
+										new Modulo("Marketing"),
+										new Modulo("Laboratorio"),
+										new Modulo("Comercial")
+								     )
+			         );	
 		
 		repo.saveAll(Arrays.asList(       
 										new Usuario("Fagner Lira"),
