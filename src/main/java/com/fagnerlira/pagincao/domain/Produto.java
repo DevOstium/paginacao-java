@@ -26,6 +26,7 @@ public class Produto implements Serializable {
 	private LocalDate prazoValidade;
 	private double precoVenda;
 	private Integer estoque;
+	private boolean inativo;
 
 	@ManyToMany(mappedBy="produtos")
 	private Set<Categoria> categorias = new HashSet<>();
@@ -33,11 +34,12 @@ public class Produto implements Serializable {
 	public Produto() {
 	}
 
-	public Produto(String nome, LocalDate prazoValidade, double precoVenda, Integer estoque) {
+	public Produto(String nome, LocalDate prazoValidade, double precoVenda, Integer estoque, boolean inativo ) {
 		this.nome = nome;
 		this.prazoValidade = prazoValidade;
 		this.precoVenda = precoVenda;
 		this.estoque = estoque;
+		this.inativo = inativo;
 	}
 
 	public Integer getId() {
@@ -79,6 +81,14 @@ public class Produto implements Serializable {
 	public void setEstoque(Integer estoque) {
 		this.estoque = estoque;
 	}
+	
+	public boolean isInativo() {
+		return inativo;
+	}
+
+	public void setInativo(boolean inativo) {
+		this.inativo = inativo;
+	}
 
 	public Set<Categoria> getCategorias() {
 		return categorias;
@@ -87,7 +97,7 @@ public class Produto implements Serializable {
 	public void setCategorias(Set<Categoria> categorias) {
 		this.categorias = categorias;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
