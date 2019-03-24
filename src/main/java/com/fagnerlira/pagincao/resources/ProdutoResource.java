@@ -32,12 +32,13 @@ public class ProdutoResource {
 	}
 	
 	//http://localhost:8080/produtos/paginacao/?categorias=1,3
+	//http://localhost:8080/produtos/paginacao/?pagina=0&linhasPorPagina=3
 	@RequestMapping(value="/paginacao", method=RequestMethod.GET)
 	public ResponseEntity<Page<Produto>> findPage (
 													@RequestParam(value = "nome",             defaultValue = "")      String   nome,
 													@RequestParam(value = "categorias",       defaultValue = "")      String   paramCategorias,
-													@RequestParam(value = "pagina",           defaultValue = "0")     Integer  page,
-													@RequestParam(value = "linhasPorPagina",  defaultValue = "24")    Integer  linesPerPage,
+													@RequestParam(value = "pagina",           defaultValue = "0")     Integer  pagina,
+													@RequestParam(value = "linhasPorPagina",  defaultValue = "5")    Integer  linhasPorPagina,
 													@RequestParam(value = "orderBy",          defaultValue = "id")    String   orderBy,
 													@RequestParam(value = "direction",        defaultValue = "ASC")   String   direction
 											      ) {
@@ -52,7 +53,7 @@ public class ProdutoResource {
 			categoriasID = null;
 		}
 		
-		Page<Produto> list = service.findPage(nomeDecoded, categoriasID, paramCategorias,  page, linesPerPage, orderBy, direction);
+		Page<Produto> list = service.findPage(nomeDecoded, categoriasID, paramCategorias,  pagina, linhasPorPagina, orderBy, direction);
 
 		return ResponseEntity.ok().body(list);
 	}
